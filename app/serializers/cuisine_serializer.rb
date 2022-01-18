@@ -1,4 +1,4 @@
 class CuisineSerializer < ActiveModel::Serializer
-  attributes :id, :type
+  attributes :id, :category
   has_one :restaurant
 end

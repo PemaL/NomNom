@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
-  has_many :menus
-  has_one :restaurant, through: :menus
+  belongs_to :menus
+  belongs_to :restaurant, through: :menus
 end

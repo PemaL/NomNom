@@ -11,13 +11,9 @@ class ApplicationController < ActionController::API
 
     private
 
-    # def find_item
-    #     @item = Item.find(params[:id])
-    # end
-
-    # def find_rating
-    #     @rating = Rating.find(params[:id])
-    # end
+    def find_menu
+        @menu = Menu.find(params[:id])
+    end
      
     def authenticate_customer
         @current_customer = Customer.find_by(id: session[:customer_id])
