@@ -1,7 +1,49 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+Cuisine.destroy_all
+RestaurantAddress.destroy_all
+Menu.destroy_all
+Restaurant.destroy_all
+
+
+
+  20.times do 
+      Restaurant.create(
+      restaurant_code: Faker::Alphanumeric.alphanumeric(number: 10),
+      name: Faker::Restaurant.name,
+      admin_email: Faker::Internet.email,
+      phone_number: Faker::PhoneNumber.phone_number,
+      description: Faker::Restaurant.description,
+      hours: "9:00AM-10:00PM",
+      website: Faker::Internet.url,
+      image_url:Faker::Avatar.image,
+      password:"1234",
+      password_confirmation:"1234"
+    ) 
+  end 
+
+25.times do
+        Cuisine.create(
+        category: Faker::Restaurant.type,
+        restaurant_id: rand(74...93)
+        )
+end 
+
+20.times do
+    RestaurantAddress.create(
+        street: Faker::Address.street_address, 
+        city: Faker::Address.city ,
+        state: Faker::Address.state, 
+        zipcode: Faker::Address.zip_code, 
+        restaurant_id: rand(74...93)
+)
+end
+
+70.times do
+  Menu.create(
+      name: Faker::Food.dish, 
+      description: Faker::Food.description,
+      price: Faker::Commerce.price(range: 8..15.0), 
+      image_url: "data:image/png;base64,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", 
+      restaurant_id: rand(74...93)
+)
+end
