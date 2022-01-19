@@ -1,41 +1,36 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import TextField from '@mui/material/TextField';
 import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import FoodBankOutlinedIcon from '@mui/icons-material/FoodBankOutlined';
+import { useState,useEffect } from 'react';
+import RestaurantPage from './restaurantPage'
 
 
-export default function LandingPage({setCurrentUser,currentUser}) {
+export default function LandingPage({setSelectedRestaurant}) {
+  const[allRestaurants, setAllRestaurants] = useState([]);
+  const[search, setSearch] = useState(""); 
 
-  function handleLogout() {
-    fetch("/logout", { method: "DELETE" })
-      .then(() => console.log("Delete successful"))
-      .then((x) => {
-        setCurrentUser("");
-        navigate("/");
-      });
+
+ useEffect(() => {
+  fetch("/restaurants")
+    .then((res) => res.json())
+    .then((data) => setAllRestaurants(data));
+ }, []);
+
+
+  function handleChange(e){
+    setSearch(e.target.value)
   }
+
+  let searchedRestaurants = allRestaurants.filter((res) =>
+  res.name.toLowerCase().includes(search.toLowerCase())
+);
 
     return (
         <>
       <CssBaseline />
-    <AppBar position="static" style={{ background: '#2E3B55' }} sx={{ p: 2 }}>
-    <Toolbar variant="dense" onClick={() => navigate('/')}>
-        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 1 }}>
-          <FoodBankOutlinedIcon fontSize="large" />
-        </IconButton>
-        <Typography variant="h6" color="inherit" component="div">
-         NomNom
-        </Typography>
-        <Button variant="h6" color="inherit" component="div" sx={{ ml: 110 }} onClick={handleLogout}>
-         logout
-        </Button>
-      </Toolbar>
-    </AppBar>
-        </>
+      <TextField id="outlined-basic" value={search} label="Search restaurants" onChange={handleChange} variant="outlined" sx={{ mt: 10,ml: 60, width:800}}/>
+     <RestaurantPage allRestaurants={searchedRestaurants} setSelectedRestaurant={setSelectedRestaurant}/>
+      </>
     )
 }
 

@@ -49,7 +49,7 @@ export default function SignIn({currentUser, setCurrentUser}) {
         .then(res => res.json())
         .then(x => {
           x.email && setCurrentUser(x)
-          navigate('/landingPage')
+          navigate('/')
         })
         }
        

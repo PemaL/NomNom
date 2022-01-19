@@ -11,21 +11,6 @@ import { Link } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import FoodBankOutlinedIcon from '@mui/icons-material/FoodBankOutlined';
 
-// import SignIn from "../components/signin";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        NomNom
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 
 export default function mainPage() {
   return (
@@ -40,7 +25,7 @@ export default function mainPage() {
          NomNom
         </Typography>
         <Typography variant="h6" color="inherit" component="div" sx={{ ml: 110 }}>
-         Contact us
+         List your restaurant
         </Typography>
       </Toolbar>
     </AppBar>
