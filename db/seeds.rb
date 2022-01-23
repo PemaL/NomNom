@@ -22,7 +22,7 @@ Restaurant.destroy_all
 25.times do
         Cuisine.create(
         category: Faker::Restaurant.type,
-        restaurant_id: rand(94...113)
+        restaurant_id: rand(62...81)
         )
 end 
 
@@ -32,7 +32,7 @@ end
         city: Faker::Address.city ,
         state: Faker::Address.state, 
         zipcode: Faker::Address.zip_code, 
-        restaurant_id: rand(94...113)
+        restaurant_id: rand(62...81)
 )
 end
 
@@ -42,6 +42,6 @@ end
       description: Faker::Food.description,
       price: Faker::Commerce.price(range: 8..15.0), 
       image_url: "no image",
-      restaurant_id: rand(94...113)
+      restaurant_id: rand(62...81)
 )
 end

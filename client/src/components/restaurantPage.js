@@ -1,32 +1,35 @@
 import React from "react";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
-import RestaurantCard from './restaurantCard'
+import RestaurantCard from "./restaurantCard";
 
-function RestaurantPage({allRestaurants,setSelectedRestaurant}) {
-    
-   
+function RestaurantPage({
+  allRestaurants,
+  setSelectedRestaurant,
+  selectedRestaurant,
+}) {
   return (
     <div>
-      <Grid container spacing={8}>
-      {allRestaurants.map((restaurant) => {
-        return (
-            <Grid item xs={2} mt={8} ml={6} >
-            <RestaurantCard
-              id={restaurant.id}
-              key={restaurant.id}
-              name={restaurant.name}
-              website={restaurant.website}
-              image={restaurant.image_url}
-              hours={restaurant.hours}
-              description={restaurant.description}
-              setSelectedRestaurant={setSelectedRestaurant}
-            />
+      <Grid container spacing={3}>
+        {allRestaurants.map((restaurant) => {
+          return (
+            <Grid item xs={3} mt={8} ml={10}>
+              <RestaurantCard
+                id={restaurant.id}
+                key={restaurant.id}
+                name={restaurant.name}
+                website={restaurant.website}
+                image={restaurant.image_url}
+                hours={restaurant.hours}
+                phone_number={restaurant.phone_number}
+                description={restaurant.description}
+                setSelectedRestaurant={setSelectedRestaurant}
+                selectedRestaurant={selectedRestaurant}
+              />
             </Grid>
-        );
-      })}
+          );
+        })}
       </Grid>
-    
     </div>
   );
 }

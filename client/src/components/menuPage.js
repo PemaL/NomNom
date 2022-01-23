@@ -1,41 +1,41 @@
-import React from 'react'
+import React from "react";
 import MenuCard from "./menuCard";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
+import Typography from "@mui/material/Typography";
 
-export default function MenuPage({selectedRestaurant}) {
-    const[allMenus,setAllMenus] = useState([])
+export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
+  const [allMenus, setAllMenus] = useState([]);
 
-    useEffect(() => {
-        const route = `restaurants/${selectedRestaurant}`
-        console.log(route)
-        fetch(route)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data)
-            setAllMenus(data.menus)}
-            );
-      }, []);
+  useEffect(() => {
+    const route = `restaurants/${selectedRestaurant.id}`;
+    fetch(route)
+      .then((res) => res.json())
+      .then((data) => {
+        setAllMenus(data.menus);
+      });
+  }, []);
 
-      console.log(allMenus)
-
-    return (
-      <div>
-        <Grid container spacing={8}>
+  return (
+    <div style={{ background: "#2E3B55" }}>
+      <Typography
+        gutterBottom
+        variant="h5"
+        align="center"
+        style={{ color: "#FFFFFF" }}
+        component="div"
+      >
+        {selectedRestaurant.name} Menu
+      </Typography>
+      <Grid container spacing={1} sx={{ width: "120%", ml: 10 }}>
         {allMenus.map((menu) => {
           return (
-            <Grid item xs={3} mt={2} >
-            <MenuCard
-              key={menu.id}
-              id={menu.id}
-              name={menu.name}
-              description={menu.description}
-              price={menu.price}
-            />
+            <Grid item key={menu.id} xs={8} mt={5}>
+              <MenuCard menu={menu} handleAddToCart={handleAddToCart} />
             </Grid>
           );
         })}
-        </Grid>
-      </div>
-    );
-  }
+      </Grid>
+    </div>
+  );
+}
