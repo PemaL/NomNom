@@ -30,7 +30,7 @@ export default function RestaurantCard({
   }
 
   return (
-    <Card sx={{ maxWidth: 250 }} align="center" style={{ color: "#2E3B55" }}>
+    <Card sx={{ maxWidth: 250 }} align="center" style={{ color: "#2E3B55", borderRadius: 7 }}>
       <Typography gutterBottom variant="h5" component="div">
         {name}
       </Typography>

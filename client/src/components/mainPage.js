@@ -32,7 +32,8 @@ export default function mainPage() {
             variant="h6"
             color="inherit"
             component="div"
-            sx={{ ml: 110 }}
+            sx={{ ml: 'auto'}}
+
           >
             List your restaurant
           </Typography>
@@ -89,18 +90,6 @@ export default function mainPage() {
           </Container>
         </Box>
       </main>
-      {/* Footer */}
-      <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom></Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        ></Typography>
-      </Box>
-
-      {/* End footer */}
     </>
   );
 }

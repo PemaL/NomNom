@@ -4,7 +4,7 @@ import SignUp from "./components/signUp";
 import MainPage from "./components/mainPage";
 import MenuPage from "./components/menuPage";
 import Cart from "./components/cart";
-import OrderPage from "./components/orderPage"
+import OrderPage from "./components/orderPage";
 import LandingPage from "./components/landingPage";
 import NavBar from "./components/navBar";
 import { useEffect, useState } from "react";
@@ -16,29 +16,40 @@ export default function App() {
     id: "",
     name: "",
   });
-  const [cartItems, updateCart] = useState([]);
+
+  const [cartItems, setCartItems] = useState([]);
 
   function handleAddToCart(item) {
-    updateCart([...cartItems, item]);
-    console.log(item)
+    const itemExists = cartItems.find((i) => i.id === item.id);
+    if (itemExists) {
+      setCartItems(
+        cartItems.map((i) =>
+          i.id === item.id
+            ? {...itemExists, quantity: itemExists.quantity + 1 }
+            : i
+        )
+      );
+    } else{
+      setCartItems([...cartItems,{...item, quantity: 1}]);
+    }
   }
 
   function clearCart() {
-    updateCart([]);
+    setCartItems([]);
   }
 
   function handleRemoveFromCart(itemToBeRemoved) {
     const updatedCartItems = cartItems.filter((item) => {
       return item.id !== itemToBeRemoved.id;
-    })
-    updateCart(updatedCartItems);
+    });
+    setCartItems(updatedCartItems);
   }
-   
+
   useEffect(() => {
     fetch("/me")
       .then((res) => res.json())
       .then((data) => data.email && setCurrentUser(data));
-  }, []); 
+  }, []);
 
   if (!currentUser) {
     return (
@@ -67,7 +78,12 @@ export default function App() {
           />
           <Route
             path="/menuPage"
-            element={<MenuPage selectedRestaurant={selectedRestaurant} handleAddToCart={handleAddToCart} />}
+            element={
+              <MenuPage
+                selectedRestaurant={selectedRestaurant}
+                handleAddToCart={handleAddToCart}
+              />
+            }
           />
           <Route
             path="/cart"
@@ -77,15 +93,13 @@ export default function App() {
                 handleRemoveFromCart={handleRemoveFromCart}
                 clearCart={clearCart}
                 currentUser={currentUser}
+                setCartItems={setCartItems}
+                handleAddToCart={handleAddToCart}
               />
             }
           />
-          <Route
-            path="/orderPage"
-            element={<OrderPage/>}
-          />
+          <Route path="/orderPage" element={<OrderPage />} />
         </Routes>
-
       </>
     );
   }

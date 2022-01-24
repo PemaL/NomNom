@@ -40,11 +40,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    padding: theme.spacing(8),
+    padding: theme.spacing(4),
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: "#2E3B55",
+  },
+  button: {
+    marginLeft: "auto",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -103,18 +106,25 @@ export default function SignUp() {
           style={{ background: "transparent", boxShadow: "none" }}
           sx={{ p: 2 }}
         >
-          <Toolbar variant="dense" onClick={() => navigate("/")}>
+          <Toolbar variant="dense">
             <IconButton
               edge="start"
               color="inherit"
               aria-label="menu"
               sx={{ mr: -1 }}
+              onClick={() => navigate("/")}
             >
-              <FoodBankOutlinedIcon fontSize="large" sx={{ mr: 2 }} />
+              <FoodBankOutlinedIcon  sx={{ mr: 2,fontSize: 40  }} />
             </IconButton>
-            <Typography variant="h6" color="inherit" component="div">
+            <Typography variant="h4" color="inherit" component="div">
               NomNom
             </Typography>
+            <div className={classes.button}>
+              <Button variant="outlined" color="inherit">List your restaurant</Button>
+              <Button variant="outlined" color="inherit" onClick={() => navigate("/signin")}>
+                Sign In
+              </Button>
+            </div>
           </Toolbar>
         </AppBar>
       </Box>

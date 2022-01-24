@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+h3{
+  text-align: center;
+}
+
+html{
+  background-color: #2E3B55;
+}
+
+h4{
+  font-family: 'Monoton', cursive;
 }

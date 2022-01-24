@@ -33,9 +33,9 @@ export default function LandingPage({
         value={search}
         label="Search restaurants"
         onChange={handleChange}
-        style={{ background: "#FFFFFF", color: "#2E3B55" }}
+        style={{ background: "#FFFFFF", color: "#2E3B55", borderRadius: 6 }}
         variant="filled"
-        sx={{ mt: 2, ml: 30, width: 800 }}
+        sx={{ mt: 2, ml: 40, width: 800 }}
       />
       <RestaurantPage
         allRestaurants={searchedRestaurants}

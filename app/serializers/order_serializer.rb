@@ -1,5 +1,6 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :menu_id, :customer_id, :created_at
   has_one :menu
-  has_one :customer
 end
+
+

@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -17,27 +17,18 @@ import IconButton from "@mui/material/IconButton";
 import FoodBankOutlinedIcon from "@mui/icons-material/FoodBankOutlined";
 import { useNavigate } from "react-router-dom";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        NomNom
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
+const useStyles = makeStyles((theme) => ({
+  body: {
+    backgroundColor: "#2E3B55",
+  },
+  button: {
+    marginLeft: "auto",
+    margin: 20,
+  },
+}));
 
 export default function SignIn({ currentUser, setCurrentUser }) {
+  const classes = useStyles();
   const navigate = useNavigate();
   const [session, setSession] = useState({ email: "", password: "" });
 
@@ -58,29 +49,35 @@ export default function SignIn({ currentUser, setCurrentUser }) {
   };
 
   return (
-    <div style={{ background: "#2E3B55" }}>
+    <div className={classes.body}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
-          style={{ background: "#2E3B55" }}
+          style={{ background: "transparent", boxShadow: "none" }}
           sx={{ p: 2 }}
         >
-          <Toolbar variant="dense" onClick={() => navigate("/")}>
+          <Toolbar variant="dense">
             <IconButton
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 1 }}
+              sx={{ mr: -1 }}
+              onClick={() => navigate("/")}
             >
-              <FoodBankOutlinedIcon fontSize="large" />
+              <FoodBankOutlinedIcon fontSize="large" sx={{ mr: 2, fontSize: 40 }} />
             </IconButton>
-            <Typography variant="h6" color="inherit" component="div">
+            <Typography variant="h4" color="inherit" component="div">
               NomNom
             </Typography>
+            <div className={classes.button}>
+              <Button variant="outlined" color="inherit">List your restaurant</Button>
+              <Button variant="outlined" color="inherit" onClick={() => navigate("/signup")}>
+                Sign Up
+              </Button>
+            </div>
           </Toolbar>
         </AppBar>
       </Box>
-      <ThemeProvider theme={theme}>
         <Container
           component="main"
           maxWidth="xs"
@@ -90,6 +87,7 @@ export default function SignIn({ currentUser, setCurrentUser }) {
           <Box
             sx={{
               marginTop: 8,
+              padding: 10,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -153,9 +151,7 @@ export default function SignIn({ currentUser, setCurrentUser }) {
               </Grid>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
-      </ThemeProvider>
     </div>
   );
 }

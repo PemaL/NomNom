@@ -8,7 +8,6 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActions } from "@material-ui/core";
 import { makeStyles } from "@mui/styles";
 
-import { useState } from "react";
 
 const useStyles = makeStyles(() => ({
   root: {

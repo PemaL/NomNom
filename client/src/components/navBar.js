@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import FoodBankOutlinedIcon from "@mui/icons-material/FoodBankOutlined";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 
 import { makeStyles } from "@mui/styles";
@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
 
 function NavBar({ setCurrentUser, cartItems }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const classes = useStyles();
 
   function handleLogout() {
@@ -32,19 +33,27 @@ function NavBar({ setCurrentUser, cartItems }) {
         navigate("/");
       });
   }
+
+  function handleOrderClick() {
+    navigate("/orderPage");
+  }
+
   return (
     <>
       <AppBar position="static" className={classes.appBar} sx={{ p: 2 }}>
-        <Toolbar variant="dense" >
-          <Typography variant="h6" className={classes.logo} color="inherit" onClick={() => navigate("/")}>
+        <Toolbar variant="dense">
+          <Typography
+            variant="h4"
+            color="inherit"
+            onClick={() => navigate("/")}
+          >
             <IconButton
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 1 }}
-              
+              sx={{ mr: -1 }}
             >
-              <FoodBankOutlinedIcon fontSize="large" />
+              <FoodBankOutlinedIcon sx={{ mr: 1, fontSize: 40 }} />
             </IconButton>
             NomNom
           </Typography>
@@ -52,11 +61,18 @@ function NavBar({ setCurrentUser, cartItems }) {
             <Button color="inherit" onClick={handleLogout}>
               logout
             </Button>
-            <IconButton aria-label="Show cart items" color="inherit" >
-              <Badge badgeContent={cartItems.length} color="secondary">
-                <ShoppingBasketIcon onClick={() => navigate("/cart")}/>
-              </Badge>
-            </IconButton>
+            {location.pathname !== "/orderPage" && (
+              <Button color="inherit" onClick={handleOrderClick}>
+                My order
+              </Button>
+            )}
+            {location.pathname !== "/cart" && (
+              <IconButton aria-label="Show cart items" color="inherit">
+                <Badge badgeContent={cartItems.length} color="secondary">
+                  <ShoppingBasketIcon onClick={() => navigate("/cart")} />
+                </Badge>
+              </IconButton>
+            )}
           </div>
         </Toolbar>
       </AppBar>

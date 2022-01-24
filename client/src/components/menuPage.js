@@ -14,7 +14,7 @@ export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
       .then((data) => {
         setAllMenus(data.menus);
       });
-  }, []);
+  });
 
   return (
     <div style={{ background: "#2E3B55" }}>
@@ -22,7 +22,7 @@ export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
         gutterBottom
         variant="h5"
         align="center"
-        style={{ color: "#FFFFFF" }}
+        style={{ color: "#FFFFFF"}}
         component="div"
       >
         {selectedRestaurant.name} Menu
