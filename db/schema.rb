@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_043012) do
+ActiveRecord::Schema.define(version: 2022_01_25_003119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,14 +55,23 @@ ActiveRecord::Schema.define(version: 2022_01_18_043012) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "order_code"
+  create_table "order_details", force: :cascade do |t|
     t.bigint "menu_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "price"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_order_details_on_menu_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "Pending"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
-    t.index ["menu_id"], name: "index_orders_on_menu_id"
   end
 
   create_table "restaurant_addresses", force: :cascade do |t|
@@ -104,8 +113,9 @@ ActiveRecord::Schema.define(version: 2022_01_18_043012) do
   add_foreign_key "addresses", "customers"
   add_foreign_key "cuisines", "restaurants"
   add_foreign_key "menus", "restaurants"
+  add_foreign_key "order_details", "menus"
+  add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "customers"
-  add_foreign_key "orders", "menus"
   add_foreign_key "restaurant_addresses", "restaurants"
   add_foreign_key "reviews", "customers"
   add_foreign_key "reviews", "restaurants"

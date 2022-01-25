@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginLeft: "auto",
+    borderRadius: 14,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -120,7 +121,8 @@ export default function SignUp() {
               NomNom
             </Typography>
             <div className={classes.button}>
-              <Button variant="outlined" color="inherit">List your restaurant</Button>
+              <Button variant="outlined" color="inherit" onClick={() => navigate("/restaurantSignup")}>RestaurantPage</Button>
+              {" "}
               <Button variant="outlined" color="inherit" onClick={() => navigate("/signin")}>
                 Sign In
               </Button>

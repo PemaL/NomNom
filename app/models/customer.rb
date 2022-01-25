@@ -4,9 +4,8 @@ class Customer < ApplicationRecord
     has_many :reviews
     has_many :restaurant, through: :reviews
 
-    has_many :orders
+    has_many :orders, dependent: :destroy
     has_many :menus, through: :orders
 
     has_one :address
-
 end

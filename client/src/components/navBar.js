@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     marginLeft: "auto",
+    borderRadius: 14,
   },
 }));
 
@@ -58,11 +59,12 @@ function NavBar({ setCurrentUser, cartItems }) {
             NomNom
           </Typography>
           <div className={classes.button}>
-            <Button color="inherit" onClick={handleLogout}>
+            <Button variant="outlined" color="inherit" onClick={handleLogout}>
               logout
             </Button>
+            {" "}
             {location.pathname !== "/orderPage" && (
-              <Button color="inherit" onClick={handleOrderClick}>
+              <Button variant="outlined" color="inherit" onClick={handleOrderClick}>
                 My order
               </Button>
             )}

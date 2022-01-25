@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginLeft: "auto",
     margin: 20,
+    borderRadius: 14,
   },
 }));
 
@@ -70,7 +71,8 @@ export default function SignIn({ currentUser, setCurrentUser }) {
               NomNom
             </Typography>
             <div className={classes.button}>
-              <Button variant="outlined" color="inherit">List your restaurant</Button>
+              <Button variant="outlined" color="inherit">Restaurant</Button>
+              {" "}
               <Button variant="outlined" color="inherit" onClick={() => navigate("/signup")}>
                 Sign Up
               </Button>

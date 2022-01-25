@@ -4,9 +4,20 @@ class OrdersController < ApplicationController
 
     def create
         order = Order.create(
-          menu_id: params[:menu_id],
           customer_id: params[:customer_id]
         )
+
+        menu_items = params[:menu_items]
+
+        for item in menu_items
+          OrderDetail.create(
+            menu_id: item[:menu_id],
+            order_id: order.id,
+            price: item[:price],
+            quantity: item[:quantity]
+          )
+        end
+
         render json: order, status: :created
     end
 

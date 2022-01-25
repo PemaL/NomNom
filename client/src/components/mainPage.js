@@ -33,13 +33,12 @@ export default function mainPage() {
             color="inherit"
             component="div"
             sx={{ ml: 'auto'}}
-
           >
-            List your restaurant
+            Restaurant
           </Typography>
         </Toolbar>
       </AppBar>
-
+      
       <main>
         {/* Hero unit */}
         <Box

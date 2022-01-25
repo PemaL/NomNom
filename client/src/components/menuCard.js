@@ -11,7 +11,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxHeight: 150,
+    maxHeight: 250,
     marginLeft: 90,
     borderRadius: 14,
   },
