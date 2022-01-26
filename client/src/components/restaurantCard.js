@@ -28,7 +28,7 @@ export default function RestaurantCard({
     });
     navigate("/menuPage");
   }
-
+console.log(selectedRestaurant.id)
   return (
     <Card sx={{ maxWidth: 250 }} align="center" style={{ color: "#2E3B55", borderRadius: 7 }}>
       <Typography gutterBottom variant="h5" component="div">

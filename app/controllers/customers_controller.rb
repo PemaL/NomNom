@@ -1,16 +1,11 @@
 class CustomersController < ApplicationController
 
   skip_before_action :authenticate_customer, only: [:create,:index]
+  skip_before_action :authenticate_restaurant
 
     def create
-        customer = Customer.create(
-          first_name: params[:first_name],
-          last_name: params[:last_name],
-          email: params[:email],
-          phone_number: params[:phone_number],
-          password: params[:password],
-          password_confirmation: params[:password_confirmation])
-        # session[:user_id] = user.id
+        customer = Customer.create!(customer_params)
+       
         render json: customer, status: :created
       end
 
@@ -36,6 +31,6 @@ class CustomersController < ApplicationController
       private 
 
       def customer_params
-        params.permit(:first_name,:last_name,:email,:password, :password_confirmation)
+        params.permit(:first_name,:last_name,:email,:phone_number,:password, :password_confirmation)
       end
 end

@@ -46,9 +46,8 @@ export default function Cart({
 	cartItems,
 	clearCart,
 	currentUser,
-  handleAddToCart,
-  handleRemoveFromCart
-	
+	handleAddToCart,
+	handleRemoveFromCart,
 }) {
 	const classes = useStyles();
 	const navigate = useNavigate();
@@ -74,7 +73,7 @@ export default function Cart({
 			.then(() => {
 				clearCart();
 				alert("Your order has been placed");
-        navigate("/")
+				navigate("/");
 			});
 	}
 
@@ -84,7 +83,11 @@ export default function Cart({
 				<>
 					<Grid spacing={1} sx={{ width: "150%", ml: 25, mt: 5 }}>
 						<Grid item xs={12} sm={4} key={item.id}>
-							<CartItem item={item} handleRemoveFromCart={handleRemoveFromCart} handleAddToCart={handleAddToCart} />
+							<CartItem
+								item={item}
+								handleRemoveFromCart={handleRemoveFromCart}
+								handleAddToCart={handleAddToCart}
+							/>
 						</Grid>
 					</Grid>
 				</>

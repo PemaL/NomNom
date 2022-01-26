@@ -40,8 +40,8 @@ function NavBar({ setCurrentUser, cartItems }) {
   }
 
   return (
-    <>
-      <AppBar position="static" className={classes.appBar} sx={{ p: 2 }}>
+    <div className={classes.appBar}>
+      <AppBar position="static" style={{ background: "transparent", boxShadow: "none" }} sx={{ p: 2 }}>
         <Toolbar variant="dense">
           <Typography
             variant="h4"
@@ -78,7 +78,7 @@ function NavBar({ setCurrentUser, cartItems }) {
           </div>
         </Toolbar>
       </AppBar>
-    </>
+    </div>
   );
 }
 

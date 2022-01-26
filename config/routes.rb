@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   post '/login',to: 'sessions#create'
   delete '/logout', to:'sessions#destroy'
   get '/me', to: 'customers#show'
+  get '/restaurant', to: 'restaurants#show'
   post '/order', to: 'orders#create'
+  get '/currentRestaurant', to: "restaurants#me_show"
+  post '/restaurantlogin',to: 'restaurant_sessions#create'
+  delete '/restaurantlogout', to:'restaurant_sessions#destroy'
 end

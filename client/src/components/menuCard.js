@@ -8,12 +8,13 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActions } from "@material-ui/core";
 import { makeStyles } from "@mui/styles";
 
-
+import image from "../Images/food.png";
 const useStyles = makeStyles(() => ({
   root: {
     maxHeight: 250,
     marginLeft: 90,
     borderRadius: 14,
+    display: "flex"
   },
   media: {
     paddingTop: 5,
@@ -21,6 +22,7 @@ const useStyles = makeStyles(() => ({
   cardActions: {
     display: "flex",
     justifyContent: "flex-end",
+    marginTop: "auto"
   },
   cardContent: {
     display: "flex",
@@ -30,7 +32,16 @@ const useStyles = makeStyles(() => ({
     background: "#2E3B55",
     size: "small",
     borderRadius: 14,
+    marginTop: 10
   },
+  media: {
+     maxWidth: 250,
+     maxHeight: 250
+  }, 
+  div:{
+      display: "flex",
+      flexDirection: "column"
+  }
 }));
 
 export default function MenuCard({ menu,handleAddToCart}) {
@@ -38,7 +49,8 @@ export default function MenuCard({ menu,handleAddToCart}) {
 
   return (
     <Card className={classes.root}>
-      <CardMedia className={classes.media} title={menu.name} />
+       <CardMedia className={classes.media} component="img" image={image} alt="restaurant" />
+      <div className={classes.div}>
       <CardContent>
         <div className={classes.cardContent}>
           <Typography variant="h5" gutterBottom>
@@ -60,6 +72,7 @@ export default function MenuCard({ menu,handleAddToCart}) {
           Add to bag
         </Button>
       </CardActions>
+      </div>
     </Card>
   );
 }

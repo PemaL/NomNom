@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     skip_before_action :authenticate_customer, only: :create
+    skip_before_action :authenticate_restaurant
 
     def create
         customer = Customer.find_by(email: params[:email])

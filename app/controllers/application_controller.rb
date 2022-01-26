@@ -7,17 +7,18 @@ class ApplicationController < ActionController::API
 
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    before_action :authenticate_customer
+    before_action :authenticate_customer, :authenticate_restaurant
 
     private
 
-    def find_menu
-        @menu = Menu.find(params[:id])
-    end
-     
     def authenticate_customer
         @current_customer = Customer.find_by(id: session[:customer_id])
         render json: { error: "Not authorized" }, status: :unauthorized unless @current_customer
+    end
+
+    def authenticate_restaurant
+        @current_restaurant = Restaurant.find_by(id: session[:restaurant_id])
+        render json: { error: "Not authorized" }, status: :unauthorized unless @current_restaurant
     end
 
     def render_unprocessable_entity

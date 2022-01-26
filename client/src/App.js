@@ -6,17 +6,26 @@ import MenuPage from "./components/menuPage";
 import Cart from "./components/cart";
 import OrderPage from "./components/orderPage";
 import LandingPage from "./components/landingPage";
+import RestaurantSignUp from "./components/restaurantSignUp";
+import RestaurantSignIn from "./components/restaurantSignIn";
 import NavBar from "./components/navBar";
+import RestaurantNavBar from "./components/restaurantNavBar";
+import MenuForm from "./components/menuForm"
+
+import RestaurantLanding from "./components/restaurantLanding"
+
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
 	const [currentUser, setCurrentUser] = useState("");
+	const [currentRestaurant, setCurrentRestaurant] = useState("");
 	const [selectedRestaurant, setSelectedRestaurant] = useState({
 		id: "",
 		name: "",
 	});
 
+	console.log(currentRestaurant)
 	const [cartItems, setCartItems] = useState([]);
 
 	function handleAddToCart(item) {
@@ -61,18 +70,37 @@ export default function App() {
 			.then((data) => data.email && setCurrentUser(data));
 	}, []);
 
-	if (!currentUser) {
+	useEffect(() => {
+		fetch("/currentRestaurant")
+			.then((res) => res.json())
+			.then((data) => data.admin_email && setCurrentRestaurant(data));
+	}, []);
+
+	if (!currentUser && !currentRestaurant) {
 		return (
 			<Routes>
 				<Route exact path="/" element={<MainPage />} />
 				<Route path="/signUp" element={<SignUp />} />
 				<Route
-					path="/SignIn"
+					path="/signIn"
 					element={<SignIn setCurrentUser={setCurrentUser} />}
+				/>
+				<Route
+					path="/restaurantSignIn"
+					element={
+						<RestaurantSignIn
+							currentRestaurant={currentRestaurant}
+							setCurrentRestaurant={setCurrentRestaurant}
+						/>
+					}
+				/>
+				<Route
+					path="/restaurantSignUp"
+					element={<RestaurantSignUp />}
 				/>
 			</Routes>
 		);
-	} else {
+	} else if (currentUser) {
 		return (
 			<>
 				<NavBar setCurrentUser={setCurrentUser} cartItems={cartItems} />
@@ -108,7 +136,20 @@ export default function App() {
 							/>
 						}
 					/>
-					<Route path="/orderPage" element={<OrderPage />} />
+					<Route
+						path="/orderPage"
+						element={<OrderPage currentUser={currentUser} />}
+					/>
+				</Routes>
+			</>
+		);
+	} else {
+		return (
+			<>
+				<RestaurantNavBar setCurrentRestaurant={setCurrentRestaurant} />
+				<Routes>
+					<Route path="/" element={<RestaurantLanding currentRestaurant={currentRestaurant}/>} />
+					<Route path="/menuForm" element={<MenuForm currentRestaurant={currentRestaurant}/>} />
 				</Routes>
 			</>
 		);
