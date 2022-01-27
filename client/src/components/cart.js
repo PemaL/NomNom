@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+
 export default function Cart({
 	cartItems,
 	clearCart,
@@ -62,6 +63,7 @@ export default function Cart({
 	const totalPrice = cartItems.reduce((price, item) => price + item.price, 0);
 
 	function handlePost() {
+
 		fetch("/order", {
 			method: "POST",
 			headers: {
@@ -81,7 +83,7 @@ export default function Cart({
 		cartItems.map((item) => {
 			return (
 				<>
-					<Grid spacing={1} sx={{ width: "150%", ml: 25, mt: 5 }}>
+					<Grid spacing={1} sx={{ width: "180%", ml: 25, mt: 5 }}>
 						<Grid item xs={12} sm={4} key={item.id}>
 							<CartItem
 								item={item}
@@ -123,6 +125,7 @@ export default function Cart({
 					>
 						{" "}
 						Empty Cart
+						{" "}
 					</Button>
 					<Button
 						variant="outlined"

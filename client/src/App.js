@@ -10,6 +10,7 @@ import RestaurantSignUp from "./components/restaurantSignUp";
 import RestaurantSignIn from "./components/restaurantSignIn";
 import NavBar from "./components/navBar";
 import MenuForm from "./components/menuForm"
+import MenuEdit from "./components/menuEdit"
 
 import RestaurantNavBar from "./components/restaurantNavBar";
 import RestaurantProfileEdit from "./components/restaurantProfileEdit"
@@ -26,8 +27,8 @@ export default function App() {
 		id: "",
 		name: "",
 	});
+	const [selectedMenu, setSelectedMenu] = useState("")
 
-	console.log(currentRestaurant)
 	const [cartItems, setCartItems] = useState([]);
 
 	function handleAddToCart(item) {
@@ -153,9 +154,10 @@ export default function App() {
 			<>
 				<RestaurantNavBar setCurrentRestaurant={setCurrentRestaurant} />
 				<Routes>
-					<Route path="/" element={<RestaurantLanding currentRestaurant={currentRestaurant}/>} />
+					<Route path="/" element={<RestaurantLanding currentRestaurant={currentRestaurant} setSelectedMenu={setSelectedMenu}/>} />
 					<Route path="/menuForm" element={<MenuForm currentRestaurant={currentRestaurant}/>} />
 					<Route path="/restaurantProfileEdit" element={<RestaurantProfileEdit  currentRestaurant={currentRestaurant}/>} />
+					<Route path="/menuEdit" element={<MenuEdit selectedMenu={selectedMenu} />} />
 				</Routes>
 			</>
 		);

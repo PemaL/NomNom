@@ -118,20 +118,12 @@ export default function MainPage() {
 					<Container maxWidth="sm">
 						<Typography
 							component="h1"
-							variant="h2"
+							variant="h1"
 							align="center"
 							color="#e8eaed"
 							gutterBottom
 						>
-							NOmNOmNoM
-						</Typography>
-						<Typography
-							variant="h5"
-							align="center"
-							color="#e8eaed"
-							paragraph
-						>
-							NomNom away...
+							NomNoM away...
 						</Typography>
 						<Stack
 							sx={{ pt: 4 }}

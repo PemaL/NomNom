@@ -10,10 +10,10 @@ function RestaurantPage({
 }) {
   return (
     <div>
-      <Grid container spacing={3}>
+      <Grid container spacing={1}>
         {allRestaurants.map((restaurant) => {
           return (
-            <Grid item xs={3} mt={8} ml={10}>
+            <Grid item xs={3} mt={8} ml={15}>
               <RestaurantCard
                 id={restaurant.id}
                 key={restaurant.id}

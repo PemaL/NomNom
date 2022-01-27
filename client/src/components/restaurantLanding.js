@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const useStyles = makeStyles(
 	() => ({
 		appBar: {
@@ -25,7 +26,8 @@ const useStyles = makeStyles(
 	{}
 );
 
-export default function RestaurantLanding({ currentRestaurant }) {
+export default function RestaurantLanding({ currentRestaurant,setSelectedMenu }) {
+	console.log(currentRestaurant.id)
 	const classes = useStyles();
 	const [myMenu, setMyMenu] = useState([]);
 	const navigate = useNavigate();
@@ -46,6 +48,11 @@ export default function RestaurantLanding({ currentRestaurant }) {
 		})
 			.then((res) => res.json())
 			.then(() => setUpdate(!update));
+	}
+
+	function handleEditClick(menu){
+       setSelectedMenu(menu)
+        navigate("/menuEdit")
 	}
 
 	return (
@@ -71,17 +78,17 @@ export default function RestaurantLanding({ currentRestaurant }) {
 					</Typography>
 				</Container>
 
-				<Container sx={{ maxWidth: 250, maxHeight: 40 }}>
+				<Container sx={{ maxWidth: 350, maxHeight: 40 }}>
 					{/* End hero unit */}
 					<Grid container spacing={4}>
 						{myMenu.map((menu) => (
-							<Grid item key={menu} xs={12} sm={6} md={4}>
+							<Grid item key={menu} xs={12} sm={6} md={3}>
 								<Card
 									sx={{
-										height: "70%",
+										height: "90%",
 										display: "flex",
 										flexDirection: "column",
-										mt: 10,
+										mt: 2,
 									}}
 								>
 									<CardMedia
@@ -109,9 +116,10 @@ export default function RestaurantLanding({ currentRestaurant }) {
 										</Typography>
 									</CardContent>
 									<CardActions sx={{ mt: -10}}>
-										<Button variant="outlined" size="small" color="inherit" >
+										<Button variant="outlined" size="small" color="inherit" onClick={()=>handleEditClick(menu)} >
 											Edit
 										</Button>
+										
 										<Button
 											variant="outlined"
 											onClick={() => handleDelete(menu)}

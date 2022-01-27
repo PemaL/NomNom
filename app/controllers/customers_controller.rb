@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
 
-  skip_before_action :authenticate_customer, only: [:create,:index]
+  skip_before_action :authenticate_customer, only: [:create,:index,:show]
   skip_before_action :authenticate_restaurant
 
     def create

@@ -121,7 +121,6 @@ export default function SignUp() {
               NomNom
             </Typography>
             <div className={classes.button}>
-              <Button variant="outlined" color="inherit" onClick={() => navigate("/restaurantSignup")}>RestaurantPage</Button>
               {" "}
               <Button variant="outlined" color="inherit" onClick={() => navigate("/signin")}>
                 Sign In

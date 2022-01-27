@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     end
 
     def show 
-        order = Order.find_by(customer_id: params[:id])
+        order = Order.where(customer_id: params[:id])
         if order 
           render json: order, status: :ok 
         else 
@@ -35,6 +35,4 @@ class OrdersController < ApplicationController
         end 
     end 
      
-
-    
 end

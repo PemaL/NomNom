@@ -71,8 +71,6 @@ export default function SignIn({ currentUser, setCurrentUser }) {
               NomNom
             </Typography>
             <div className={classes.button}>
-              <Button variant="outlined" color="inherit">Restaurant</Button>
-              {" "}
               <Button variant="outlined" color="inherit" onClick={() => navigate("/signup")}>
                 Sign Up
               </Button>
@@ -88,8 +86,8 @@ export default function SignIn({ currentUser, setCurrentUser }) {
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
-              padding: 10,
+              marginTop: 4,
+              padding: 6,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

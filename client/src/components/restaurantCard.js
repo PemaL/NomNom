@@ -28,7 +28,6 @@ export default function RestaurantCard({
     });
     navigate("/menuPage");
   }
-console.log(selectedRestaurant.id)
   return (
     <Card sx={{ maxWidth: 250 }} align="center" style={{ color: "#2E3B55", borderRadius: 7 }}>
       <Typography gutterBottom variant="h5" component="div">
@@ -36,17 +35,14 @@ console.log(selectedRestaurant.id)
       </Typography>
       <CardMedia component="img" image={image} alt="restaurant" />
       <CardContent>
-        {/* <Typography variant="body2" color="text.secondary">
-          no description
-        </Typography> */}
         <Typography variant="body2" color="text.secondary">
-          {hours}
+          Hours: {hours}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {phone_number}
+          Phone Number: {phone_number}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {website}
+          Website: {website}
         </Typography>
       </CardContent>
       <CardActions>

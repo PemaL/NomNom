@@ -3,9 +3,28 @@ import MenuCard from "./menuCard";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+import Container from "@mui/material/Container";
+import { getNativeSelectUtilityClasses } from "@mui/material";
+
+const useStyles = makeStyles(
+	() => ({
+		appBar: {
+			backgroundColor: "#2E3B55",
+		},
+		button: {
+			marginLeft: "auto",
+			borderRadius: 14,
+			color: "#FFFFFF",
+		},
+	}),
+	{}
+);
 
 export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
 	const [allMenus, setAllMenus] = useState([]);
+	const classes = useStyles();
+
 	useEffect(() => {
 		const route = `restaurants/${selectedRestaurant.id}`;
 		fetch(route)
@@ -16,20 +35,31 @@ export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
 	}, []);
 
 	return (
-		<div style={{ background: "#2E3B55" }}>
-			<Typography
-				gutterBottom
-				variant="h5"
-				align="center"
-				style={{ color: "#FFFFFF" }}
-				component="div"
-			>
-				{selectedRestaurant.name} Menu
-			</Typography>
-			<Grid container spacing={1} sx={{ width: "100%", ml: 35 }}>
+		<main className={classes.appBar}>
+		<Container maxWidth="sm">
+					<Typography
+						component="h1"
+						variant="h2"
+						align="center"
+						color="#FFFFFF"
+						gutterBottom
+					>
+						{selectedRestaurant.name}
+					</Typography>
+					<Typography
+						variant="h5"
+						align="center"
+						color="#FFFFFF"
+						paragraph
+					>
+						{selectedRestaurant.description? <p> {selectedRestaurant.description} </p> : <p> Minimalist hangout with late hours providing Korean BBQ & other plates along with beer, wine & soju. </p>}
+					</Typography>
+				</Container>
+				<Container sx={{ maxWidth: 350, maxHeight: 40 }}>
+			<Grid container spacing={10}>
 				{allMenus.map((menu) => {
 					return (
-						<Grid item key={menu.id} xs={8} mt={5}>
+						<Grid item key={menu.id} md={4}>
 							<MenuCard
 								menu={menu}
 								handleAddToCart={handleAddToCart}
@@ -38,6 +68,7 @@ export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
 					);
 				})}
 			</Grid>
-		</div>
+			</Container>
+		</main>
 	);
 }

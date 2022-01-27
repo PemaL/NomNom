@@ -12,74 +12,101 @@ import Badge from "@mui/material/Badge";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
-  appBar: {
-    background: "#2E3B55",
-  },
-  button: {
-    marginLeft: "auto",
-    borderRadius: 14,
-  },
+	appBar: {
+		background: "#2E3B55",
+	},
+	button: {
+		marginLeft: "auto",
+		borderRadius: 14,
+	},
 }));
 
 function NavBar({ setCurrentUser, cartItems }) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const classes = useStyles();
+	const navigate = useNavigate();
+	const location = useLocation();
+	const classes = useStyles();
 
-  function handleLogout() {
-    fetch("/logout", { method: "DELETE" })
-      .then(() => console.log("Delete successful"))
-      .then((x) => {
-        setCurrentUser("");
-        navigate("/");
-      });
-  }
+	function handleLogout() {
+		fetch("/logout", { method: "DELETE" })
+			.then(() => console.log("Delete successful"))
+			.then((x) => {
+				setCurrentUser("");
+				navigate("/");
+			});
+	}
 
-  function handleOrderClick() {
-    navigate("/orderPage");
-  }
+	function handleOrderClick() {
+		navigate("/orderPage");
+	}
 
-  return (
-    <div className={classes.appBar}>
-      <AppBar position="static" style={{ background: "transparent", boxShadow: "none" }} sx={{ p: 2 }}>
-        <Toolbar variant="dense">
-          <Typography
-            variant="h4"
-            color="inherit"
-            onClick={() => navigate("/")}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: -1 }}
-            >
-              <FoodBankOutlinedIcon sx={{ mr: 1, fontSize: 40 }} />
-            </IconButton>
-            NomNom
-          </Typography>
-          <div className={classes.button}>
-            <Button variant="outlined" color="inherit" onClick={handleLogout}>
-              logout
-            </Button>
-            {" "}
-            {location.pathname !== "/orderPage" && (
-              <Button variant="outlined" color="inherit" onClick={handleOrderClick}>
-                My order
-              </Button>
-            )}
-            {location.pathname !== "/cart" && (
-              <IconButton aria-label="Show cart items" color="inherit">
-                <Badge badgeContent={cartItems.length} color="secondary">
-                  <ShoppingBasketIcon onClick={() => navigate("/cart")} />
-                </Badge>
-              </IconButton>
-            )}
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+	return (
+		<div className={classes.appBar}>
+			<AppBar
+				position="static"
+				style={{ background: "transparent", boxShadow: "none" }}
+				sx={{ p: 2 }}
+			>
+				<Toolbar variant="dense">
+					<Typography
+						variant="h4"
+						color="inherit"
+						onClick={() => navigate("/")}
+					>
+						<IconButton
+							edge="start"
+							color="inherit"
+							aria-label="menu"
+							sx={{ mr: -1 }}
+						>
+							<FoodBankOutlinedIcon
+								sx={{ mr: 1, fontSize: 40 }}
+							/>
+						</IconButton>
+						NomNom
+					</Typography>
+					<div className={classes.button}>
+						<Button
+							variant="outlined"
+							color="inherit"
+							onClick={handleLogout}
+						>
+							logout
+						</Button>{" "}
+						{location.pathname !== "/orderPage" && (
+							<Button
+								variant="outlined"
+								color="inherit"
+								onClick={handleOrderClick}
+							>
+								My order
+							</Button>
+						)}
+						{location.pathname !== "/cart" && (
+							<IconButton
+								aria-label="Show cart items"
+								color="inherit"
+							>
+								<Badge
+									badgeContent={cartItems.length}
+									sx={{
+										"& .MuiBadge-badge": {
+											color: "#2E3B55",
+											backgroundColor: "#FFFFFF",
+										}
+									}}
+									color="secondary"
+								>
+									<ShoppingBasketIcon
+										onClick={() => navigate("/cart")}
+									/>
+								</Badge>
+							</IconButton>
+						)}
+					</div>
+				</Toolbar>
+			</AppBar>
+		</div>
+	);
 }
 
 export default NavBar;
