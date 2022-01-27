@@ -75,13 +75,11 @@ export default function RestaurantSignUp() {
     password_confirmation: "",
   });
 
-  console.log(formData);
 
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
     if (formData.password === formData.password_confirmation) {
       fetch("/restaurants", {
         method: "POST",

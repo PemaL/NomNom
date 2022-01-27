@@ -26,7 +26,7 @@ export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
 			>
 				{selectedRestaurant.name} Menu
 			</Typography>
-			<Grid container spacing={1} sx={{ width: "120%", ml: 10 }}>
+			<Grid container spacing={1} sx={{ width: "100%", ml: 35 }}>
 				{allMenus.map((menu) => {
 					return (
 						<Grid item key={menu.id} xs={8} mt={5}>

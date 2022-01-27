@@ -11,10 +11,10 @@ import { makeStyles } from "@mui/styles";
 import image from "../Images/food.png";
 const useStyles = makeStyles(() => ({
   root: {
-    maxHeight: 250,
+    maxHeight: 200,
     marginLeft: 90,
     borderRadius: 14,
-    display: "flex"
+    display: "flex",
   },
   media: {
     paddingTop: 5,
@@ -40,7 +40,8 @@ const useStyles = makeStyles(() => ({
   }, 
   div:{
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "column",
+      maxWidth:"100%"
   }
 }));
 
@@ -49,7 +50,7 @@ export default function MenuCard({ menu,handleAddToCart}) {
 
   return (
     <Card className={classes.root}>
-       <CardMedia className={classes.media} component="img" image={image} alt="restaurant" />
+       { menu.image ? <CardMedia className={classes.media} component="img" image={menu.image} alt="restaurant" /> : <CardMedia className={classes.media} component="img" image={image} alt="restaurant" /> }
       <div className={classes.div}>
       <CardContent>
         <div className={classes.cardContent}>

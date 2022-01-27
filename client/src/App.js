@@ -9,13 +9,15 @@ import LandingPage from "./components/landingPage";
 import RestaurantSignUp from "./components/restaurantSignUp";
 import RestaurantSignIn from "./components/restaurantSignIn";
 import NavBar from "./components/navBar";
-import RestaurantNavBar from "./components/restaurantNavBar";
 import MenuForm from "./components/menuForm"
 
+import RestaurantNavBar from "./components/restaurantNavBar";
+import RestaurantProfileEdit from "./components/restaurantProfileEdit"
 import RestaurantLanding from "./components/restaurantLanding"
 
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 
 export default function App() {
 	const [currentUser, setCurrentUser] = useState("");
@@ -71,9 +73,11 @@ export default function App() {
 	}, []);
 
 	useEffect(() => {
+		if (!currentRestaurant){
 		fetch("/currentRestaurant")
 			.then((res) => res.json())
 			.then((data) => data.admin_email && setCurrentRestaurant(data));
+		}
 	}, []);
 
 	if (!currentUser && !currentRestaurant) {
@@ -91,6 +95,7 @@ export default function App() {
 						<RestaurantSignIn
 							currentRestaurant={currentRestaurant}
 							setCurrentRestaurant={setCurrentRestaurant}
+							setSelectedRestaurant={setSelectedRestaurant}
 						/>
 					}
 				/>
@@ -150,6 +155,7 @@ export default function App() {
 				<Routes>
 					<Route path="/" element={<RestaurantLanding currentRestaurant={currentRestaurant}/>} />
 					<Route path="/menuForm" element={<MenuForm currentRestaurant={currentRestaurant}/>} />
+					<Route path="/restaurantProfileEdit" element={<RestaurantProfileEdit  currentRestaurant={currentRestaurant}/>} />
 				</Routes>
 			</>
 		);

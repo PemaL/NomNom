@@ -17,11 +17,12 @@ const useStyles = makeStyles(() => ({
 		marginLeft: "auto",
 		borderRadius: 14,
 	},
-}),{name: "restaurantNavBar"});
+}),{});
 
 export default function RestaurantNavBar({ setCurrentRestaurant }) {
 	const navigate = useNavigate();
-	const classes = useStyles();
+    const classes = useStyles();
+
 
 	function handleLogout() {
 		fetch("/restaurantlogout", { method: "DELETE" })
@@ -60,7 +61,25 @@ export default function RestaurantNavBar({ setCurrentRestaurant }) {
 							onClick={handleLogout}
 						>
 							logout
-						</Button>{" "}
+						</Button>
+						{" "}
+						<Button
+							variant="outlined"
+							color="inherit"
+							onClick={() => navigate("/menuForm")}
+							   
+						>
+						Add Menu Item
+						</Button>
+						{" "}
+						<Button
+							variant="outlined"
+							color="inherit"
+							onClick={() => navigate("/restaurantProfileEdit")}
+						>
+							Edit Profile Info
+						</Button>
+						{" "}
 					</div>
 				</Toolbar>
 			</AppBar>

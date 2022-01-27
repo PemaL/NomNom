@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
     skip_before_action :authenticate_customer
-    skip_before_action :authenticate_restaurant, only: [:create,:index,:show_me,:show]
+    skip_before_action :authenticate_restaurant, only: [:create,:index,:show_me,:show,:update]
 
     def index 
       restaurant = Restaurant.all
@@ -37,6 +37,8 @@ end
 
       render json: restaurant, status: :ok 
     end 
+
+    def de
 
     private 
     

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RestaurantSignIn({currentRestaurant, setCurrentRestaurant }) {
+export default function RestaurantSignIn({setCurrentRestaurant}) {
   const classes = useStyles();
   const navigate = useNavigate();
   const [session, setSession] = useState({ admin_email: "", password: "" });
@@ -49,7 +49,6 @@ export default function RestaurantSignIn({currentRestaurant, setCurrentRestauran
         navigate("/")
       });
   };
-console.log(currentRestaurant)
 
   return (
     <div className={classes.body}>
