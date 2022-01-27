@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import FoodBankOutlinedIcon from "@mui/icons-material/FoodBankOutlined";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation} from "react-router-dom";
 
 import { makeStyles } from "@mui/styles";
 
@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
 export default function RestaurantNavBar({ setCurrentRestaurant }) {
 	const navigate = useNavigate();
     const classes = useStyles();
+	const location = useLocation();
 
 
 	function handleLogout() {
@@ -62,16 +63,18 @@ export default function RestaurantNavBar({ setCurrentRestaurant }) {
 						>
 							logout
 						</Button>
-						{" "}
+
+						{location.pathname !== "/menuForm" && (
 						<Button
 							variant="outlined"
 							color="inherit"
-							onClick={() => navigate("/menuForm")}
-							   
+							onClick={() => navigate("/menuForm")}   
 						>
 						Add Menu Item
 						</Button>
+						)}
 						{" "}
+						{location.pathname !== "/restaurantProfileEdit" && (
 						<Button
 							variant="outlined"
 							color="inherit"
@@ -79,6 +82,7 @@ export default function RestaurantNavBar({ setCurrentRestaurant }) {
 						>
 							Edit Profile Info
 						</Button>
+						)}
 						{" "}
 					</div>
 				</Toolbar>

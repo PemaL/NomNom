@@ -1,5 +1,5 @@
 class OrderDetailSerializer < ActiveModel::Serializer
-  attributes :id, :price, :quantity
-  has_many :menus
-  has_one :order
+  attributes :id, :price, :quantity, :menu
+  belongs_to :menu
+
 end
