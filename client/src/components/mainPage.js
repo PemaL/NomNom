@@ -123,7 +123,7 @@ export default function MainPage() {
 							color="#e8eaed"
 							gutterBottom
 						>
-							NomNoM away...
+							NomNom away...
 						</Typography>
 						<Stack
 							sx={{ pt: 4 }}

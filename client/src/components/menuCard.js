@@ -17,13 +17,10 @@ const useStyles = makeStyles(() => ({
 		display: "flex",
 		flexDirection: "column",
 	},
-	media: {
-		paddingTop: 5,
-	},
 	cardActions: {
 		display: "flex",
 		justifyContent: "flex-end",
-		marginTop: "auto",
+
 	},
 	cardContent: {
 		display: "flex",
@@ -52,7 +49,7 @@ export default function MenuCard({ menu, handleAddToCart }) {
 	return (
 		<Card
 			sx={{
-				height: "90%",
+				height: "60%",
 				display: "flex",
 				flexDirection: "column",
 				mt: 10,
@@ -61,7 +58,7 @@ export default function MenuCard({ menu, handleAddToCart }) {
        { menu.image ? <CardMedia component="img"
 				image={menu.image}
 				sx={{
-					height: "50%",
+					height: "40%"
 				}}
 				style={{ color: "#2E3B55" }}
 			/> : <CardMedia
@@ -72,7 +69,7 @@ export default function MenuCard({ menu, handleAddToCart }) {
       }}
       style={{ color: "#2E3B55" }}
     /> } 
-			<CardContent sx={{ flexGrow: 1, height: "50%" }}>
+			<CardContent sx={{ flexGrow: 1, height: "40%" }}>
 				<Typography
 					gutterBottom
 					variant="h6"

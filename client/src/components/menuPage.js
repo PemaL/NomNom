@@ -56,10 +56,10 @@ export default function MenuPage({ selectedRestaurant, handleAddToCart }) {
 					</Typography>
 				</Container>
 				<Container sx={{ maxWidth: 350, maxHeight: 40 }}>
-			<Grid container spacing={10}>
+			<Grid container spacing={4}>
 				{allMenus.map((menu) => {
 					return (
-						<Grid item key={menu.id} md={4}>
+						<Grid item key={menu.id} md={3} style={{ padding: "0 10px" }} >
 							<MenuCard
 								menu={menu}
 								handleAddToCart={handleAddToCart}
